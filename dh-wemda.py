@@ -1,2 +1,9 @@
-主要是因为它们gradient特性不同。sigmoid和tanh的gradient在饱和区域非常平缓，接近于0，很容易造成vanishing gradient的问题，减缓收敛速度。vanishing gradient在网络层数多的时候尤其明显，是加深网络结构的主要障碍之一。相反，Relu的gradient大多数情况下是常数，有助于解决深层网络的收敛问题。Relu的另一个优势是在生物上的合理性，它是单边的，相比sigmoid和tanh，更符合生物神经元的特征。
-而提出sigmoid和tanh，主要是因为它们全程可导。还有表达区间问题，sigmoid和tanh区间是0到1，或着-1到1，在表达上，尤其是输出层的表达上有优势。
+class Solution(object):
+    def f(self,string,n):
+        l = []
+        for i in range(0,len(string)):
+            if len(set(string[i:i+n]))==1:
+                l.append((i+1,i+n,string[i:i+n]))
+        return l
+a =Solution()
+print(a.f('abbcccddeefffgggcc',2))
