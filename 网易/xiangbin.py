@@ -13,12 +13,22 @@ for i in range(len(a)):
     v_dict[i+1] = a[i]
     v_cur[i+1]=0
     v_over[i+1]=0
+def isfull(v_cur,v_dict):
+    flag=True
+    for k,v in v_dict.items():
+        if v_dict[k]!=v_cur[k]:
+            flag = False
+            break
+    return flag
 def dfs(v_cur,v,x):
     if x>=1:
         if v_cur[x]+v>v_dict[x]:
             next = v_cur[x] + v - v_dict[x]
             v_cur[x] = v_dict[x]
-            dfs(v_cur,next,x-1)
+            if x-1<1 and isfull(v_cur,v_dict)==False:
+                dfs(v_cur,next,n)
+            else:
+                dfs(v_cur,next,x-1)
         else:
             v_cur[x]+=v
 for sample in l:
