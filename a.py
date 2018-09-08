@@ -87,4 +87,4 @@ if __name__ == '__main__':
     g.depth_first('1')
 
     g.node_print()
-    print() 
+    print()
