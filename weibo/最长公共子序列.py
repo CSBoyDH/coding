@@ -13,3 +13,5 @@ def find_lcsubstr(s1, s2):
                     p=i+1
     return s1[p-mmax:p],mmax   #返回最长子串及其长度
 print(find_lcsubstr(X,Y))
+abcd1e1f1
+bcd2e2f2
