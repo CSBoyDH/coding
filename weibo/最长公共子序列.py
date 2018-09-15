@@ -1,23 +1,52 @@
-X = input()
-Y  = input()
+# X = input()
+# Y  = input()
+X = 'abcd1elfl'
+Y = 'bcd2e2f2'
 
-def get_lcs(string1, string2):
-    '''
-    输入：待比较的两个字符串
-    输出：降序输出的（子序列长度，子序列）列表
-    '''
-    string1_list=list(string1)
-    string2_list=list(string2)
-    lcs_list=[]
-    for i in range(len(string1_list)):
-        flag=0
-        lcs=''
-        for j in range(i,len(string1_list)):
-            for k in range(flag, len(string2_list)):
-                if string1_list[j]==string2_list[k]:
-                    lcs+=string1_list[j]
-                    flag=k+1
-        lcs_list.append((len(lcs), lcs))
-    return sorted(lcs_list, reverse=True)
 
-print(len(get_lcs(X,Y)[0][1]))
+def dp(S1, S2):
+    m = len(S1)
+    n = len(S2)
+    if m < 0 or n < 0:
+        return 0
+    memo = [[0] * (n + 1) for j in range(m + 1)]
+    # 初始状态 第0行 第0列 都是0
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if S1[i - 1] == S2[j - 1]:  # S1中的第i个字符 S2中的第j个字符
+                memo[i][j] = 1 + memo[i - 1][j - 1]
+            else:
+                memo[i][j] = max(memo[i - 1][j], memo[i][j - 1])
+    return memo[m][n]
+print(dp(X,Y))
+
+# def lcs(a,b):
+#     lena=len(a)
+#     lenb=len(b)
+#     c=[[0 for i in range(lenb+1)] for j in range(lena+1)]
+#     flag=[[0 for i in range(lenb+1)] for j in range(lena+1)]
+#     for i in range(lena):
+#         for j in range(lenb):
+#             if a[i]==b[j]:
+#                 c[i+1][j+1]=c[i][j]+1
+#                 flag[i+1][j+1]='ok'
+#             elif c[i+1][j]>c[i][j+1]:
+#                 c[i+1][j+1]=c[i+1][j]
+#                 flag[i+1][j+1]='left'
+#             else:
+#                 c[i+1][j+1]=c[i][j+1]
+#                 flag[i+1][j+1]='up'
+#     return c,flag
+# def printLcs(flag,a,i,j):
+#     if i==0 or j==0:
+#         return
+#     if flag[i][j]=='ok':
+#         printLcs(flag,a,i-1,j-1)
+#
+#         print(a[i-1],end='')
+#     elif flag[i][j]=='left':
+#         printLcs(flag,a,i,j-1)
+#     else:
+#         printLcs(flag,a,i-1,j)
+# c,flag=lcs(X,Y)
+# printLcs(flag,X,len(X),len(Y))
