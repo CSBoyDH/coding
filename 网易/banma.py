@@ -1,5 +1,5 @@
-#s = input()
-s = 'wbwbbbbbwbwbwb'
+s = input()
+#s = 'wbwbbbbbwbwbwb'
 def getlength(s):
     if len(s)<2:
         return len(s)

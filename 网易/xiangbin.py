@@ -8,11 +8,11 @@ for i in range(m):
     l.append(x)
 v_dict={}
 v_cur = {}
-v_over={}
+
 for i in range(len(a)):
     v_dict[i+1] = a[i]
     v_cur[i+1]=0
-    v_over[i+1]=0
+
 def isfull(v_cur,v_dict):
     flag=True
     for k,v in v_dict.items():
