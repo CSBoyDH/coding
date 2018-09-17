@@ -1,19 +1,19 @@
-# X = input()
-# Y  = input()
-X = 'abcd1elfl'
-Y = 'bcd2e2f2'
+X = input()
+Y  = input()
+# X = 'abcd1elfl'
+# Y = 'bcd2e2f2'
 
 
-def dp(S1, S2):
-    m = len(S1)
-    n = len(S2)
+def dp(x, y):
+    m = len(x)
+    n = len(y)
     if m < 0 or n < 0:
         return 0
     memo = [[0] * (n + 1) for j in range(m + 1)]
     # 初始状态 第0行 第0列 都是0
     for i in range(1, m + 1):
         for j in range(1, n + 1):
-            if S1[i - 1] == S2[j - 1]:  # S1中的第i个字符 S2中的第j个字符
+            if x[i - 1] == y[j - 1]:  # S1中的第i个字符 S2中的第j个字符
                 memo[i][j] = 1 + memo[i - 1][j - 1]
             else:
                 memo[i][j] = max(memo[i - 1][j], memo[i][j - 1])
