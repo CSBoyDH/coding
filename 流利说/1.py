@@ -1,30 +1,21 @@
-def dfs(G, i, color):
-    r = len(G)
-    color[i] = -1
-    is_DAG = 1
-    for j in range(r):
-        if G[i][j] != 0:
-            # print j
-            if color[j] == -1:
-                is_DAG = 0
-            elif color[j] == 0:
-                is_DAG = dfs(G, j, color)
-    color[i] = 1
-    return is_DAG
-
-
-def findcircle(G):
-    r = len(G)
-    color = [0] * r
-    for i in range(r):
-        # print i
-        if color[i] == 0:
-            is_DAG = dfs(G, i, color)
-            if is_DAG == 0:
-                break
-    return is_DAG
-
-
-G = [[0, 1, 0], [0, 0, 1], [0, 0, 0]]
-is_DAG = findcircle(G)
-print(is_DAG)
+class Solution(object):
+    def pathSum(self, root, sum):
+        """
+        :type root: TreeNode
+        :type sum: int
+        :rtype: List[List[int]]
+        """
+        self.res = []
+        self.total = sum
+        def caculate(root,sum,templist):
+            if not root:
+                return
+            if not root.left and not root.right:
+                if root.val+sum == self.total:
+                    self.res.append(templist+[root.val])
+            if root.left:
+                caculate(root.left,sum+root.val,templist+[root.val])
+            if root.right:
+                caculate(root.right,sum+root.val,templist+[root.val])
+        caculate(root,0,[])
+        return self.res
