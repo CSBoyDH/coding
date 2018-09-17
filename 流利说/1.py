@@ -17,5 +17,5 @@ class Solution(object):
                 caculate(root.left,sum+root.val,templist+[root.val])
             if root.right:
                 caculate(root.right,sum+root.val,templist+[root.val])
-        caculate(root,0,[])
+        1caculate(root,0,[])
         return self.res
